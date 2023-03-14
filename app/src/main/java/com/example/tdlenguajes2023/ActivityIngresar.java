@@ -23,23 +23,32 @@ public class ActivityIngresar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresar);
 
-        codigo = (EditText) findViewById(R.id.txtcodigo);
-        Nombre = (EditText) findViewById(R.id.txtNombres);
-        Apellidos = (EditText) findViewById(R.id.txtApellidos);
-        Edad = (EditText) findViewById(R.id.txtEdad);
-        Correo = (EditText) findViewById(R.id.txtCorreo);
+        try {
+            codigo = (EditText) findViewById(R.id.txtcodigo);
+            Nombre = (EditText) findViewById(R.id.txtNombres);
+            Apellidos = (EditText) findViewById(R.id.txtApellidos);
+            Edad = (EditText) findViewById(R.id.txtEdad);
+            Correo = (EditText) findViewById(R.id.txtCorreo);
+            btnagregar =(Button)findViewById(R.id.btningresar) ;
 
-        btnagregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AgregarPersonas();
-            }
-        });
+            btnagregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AgregarPersonas();
+                }
+            });
 
+        }
+        catch (Exception ex){
+            Toast.makeText(this, ex.toString(),Toast.LENGTH_SHORT).show();
+        }
 
     }
 
     private void AgregarPersonas() {
+        try {
+
+
         SQLiteConexion conexion = new SQLiteConexion(this,
                 Transacciones.NameDatabase,
                 null,
@@ -53,14 +62,20 @@ public class ActivityIngresar extends AppCompatActivity {
         valores.put(Transacciones.CORREO, Correo.getText().toString());
 
         long resultado = db.insert(Transacciones.tablaperson, Transacciones.id, valores);
-        Toast.makeText(this, "Ingresado con exito", Toast.LENGTH_SHORT).show();
-        cleanPantalla();
-    }
 
-    private void cleanPantalla() {
+        Toast.makeText(this, "Ingresado con exito", Toast.LENGTH_SHORT).show();
+        CleanPantalla();
+    }
+        catch (Exception ex){
+            ex.toString();
+        }
+
+}
+
+    private void CleanPantalla() {
         Nombre.setText("");
         Apellidos.setText("");
         Edad.setText("");
         Correo.setText("");
     }
-}
+    }

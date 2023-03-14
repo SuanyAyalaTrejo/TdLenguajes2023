@@ -11,7 +11,7 @@ public class Transacciones {
     public static String EDAD= "EDAD";
     public static String CORREO= "CORREO";
 
-    public static String CreateTBPersonas = "CREATE TABLE personas (id INTEGER PRIMARY KEY AUTOINCREMENT)" +
+    public static String CreateTBPersonas = "CREATE TABLE personas (id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "NOMBRES TEXT, APELLIDOS TEXT, EDAD INTEGER, CORREO TEXT )";
 
     public static String DropTBPersonas = "DROP TABLE IF EXISTS personas";
